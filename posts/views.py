@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 
-from .models import Post, PostImage, Comment
+from .models import Post, PostImage, Comment, Like
 from .serializers import PostSerializer
 
 class FeedView(generics.ListAPIView):
@@ -43,3 +43,25 @@ class CreateCommentView(APIView):
         comment = Comment.objects.create(post=post, text=text)
 
         return Response({"id": comment.id}, status=201)
+    
+
+class LikePostView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request, pk):
+        post = Post.objects.get(pk=pk)
+        Like.objects.create(post=post)
+        return Response({"status": "liked"}, status=201)
+
+
+class UnlikePostView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request, pk):
+        post = Post.objects.get(pk=pk)
+        Like.objects.filter(post=post).first().delete()
+        if Like:
+            Like.delete()
+
+        return Response({"status": "unliked"}, status=200)
+    

@@ -22,3 +22,12 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment on Post {self.post.id}"
+
+class Like(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="likes")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Like on Post {self.post.id}"
+
+        

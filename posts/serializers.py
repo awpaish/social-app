@@ -15,14 +15,16 @@ class CommentSerializer(serializers.ModelSerializer):
 class PostSerializer(serializers.ModelSerializer):
     images = PostImageSerializer(many=True, read_only=True)
     comments = CommentSerializer(many=True, read_only=True)
-
+    like_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
         #fields = ["id", "user", "text", "created_at", "images"]
-        fields = ["id", "text", "created_at", "images", "comments"]
+        fields = ["id", "text", "created_at", "images", "comments", "like_count"]
         #read_only_fields = ["user", "created_at"]
 
+    def get_like_count(self, obj):
+        return obj.likes.count()
 
 
 #class PostImageSerializer(serializers.ModelSerializer):
