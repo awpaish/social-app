@@ -38,11 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'users',
+    'users.apps.UsersConfig',
     'posts',
     'notifications',
     'core',
     'corsheaders',
+    'rest_framework.authtoken',
 ]
 
 
@@ -126,12 +127,19 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # Added AWP16/02/2026
-AUTH_USER_MODEL = "users.User"
+AUTH_USER_MODEL = "users.CustomUser"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+
+    ]
+}
 
 
