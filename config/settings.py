@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-ww&8z#s6-_ze4%+m6bezghh$#6vutl&w^radoo-d1#9!81b5ui
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "social-app-fc8g.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 
 # Application definition
@@ -157,4 +161,5 @@ DATABASES = {
         ssl_require=True
     )
 }
+
 
