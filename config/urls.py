@@ -23,8 +23,9 @@ from posts.views import UserDetailView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("auth/register/", include("users.urls")),
-    path("auth/login/", include("users.urls")),
+    #path("auth/register/", include("users.urls")),
+    #path("auth/login/", include("users.urls")),
+    path("auth/", include("users.urls")),
     path("auth/user/", UserDetailView.as_view()),   # ⭐ ADD THIS
     path("posts/", include("posts.urls")),
 
