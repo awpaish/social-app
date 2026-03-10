@@ -19,13 +19,17 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from posts.views import UserDetailView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("auth/", include("users.urls")),
+    path("admin/", admin.site.urls),
+    path("auth/register/", include("users.urls")),
+    path("auth/login/", include("users.urls")),
+    path("auth/user/", UserDetailView.as_view()),   # ⭐ ADD THIS
     path("posts/", include("posts.urls")),
-    path("auth/", include("users.urls")),
-]
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
