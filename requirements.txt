@@ -49,6 +49,7 @@ platformdirs==4.5.0
 pluggy==1.6.0
 poetry==2.2.1
 poetry-core==2.2.1
+psycopg2-binary==2.9.11
 pycodestyle==2.14.0
 pyflakes==3.4.0
 Pygments==2.19.2
